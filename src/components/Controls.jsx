@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { counterAction } from "../store";
 
 const Controls = () => {
   const dispatch = useDispatch();
@@ -7,35 +8,21 @@ const Controls = () => {
   const inputRef = useRef();
 
   const increment = () => {
-    dispatch({
-      type: "INCREMENT",
-    });
+    dispatch(counterAction.increment());
   };
 
   const decrement = () => {
-    dispatch({
-      type: "DECREMENT",
-    });
+    dispatch(counterAction.decrement());
   };
 
   const handleAdd = () => {
     inputRef.current.value;
-    dispatch({
-      type: "ADD",
-      payload: {
-        value: inputRef.current.value,
-      },
-    });
+    dispatch(counterAction.addition(inputRef.current.value));
     inputRef.current.value = "";
   };
 
   const handleSubstract = () => {
-    dispatch({
-      type: "SUBSTRACT",
-      payload: {
-        value: inputRef.current.value,
-      },
-    });
+    dispatch(counterAction.substraction(inputRef.current.value));
     inputRef.current.value = "";
   };
 
